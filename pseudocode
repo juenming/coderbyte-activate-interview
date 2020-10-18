@@ -1,0 +1,19 @@
+2. user_step_point table:
+
+Assumptions: I believe this table is a relational DB, which will link to multiple tables such as user main table, and this is used to track earned points transactions
+Fields: user_step_point_id (PK),
+        transaction_id uniqueidentifier,
+        user_id (FK),
+        steps bigint,
+        step_date datetime,
+        created_on datetime,
+        created_by uniqueidentifier,
+        modified_on datetime,
+        modified_by uniqueidentifier,
+        is_deleted bit
+        
+        Create index for this table as well, to increate the DB performance (depends on the field been sued for query)
+          - e.g. user_id field
+          
+          
+3. Assumed that this project is build in multi-tier architecture, and 
