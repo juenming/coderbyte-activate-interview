@@ -32,16 +32,12 @@ Assumption: the business function to get step_point will be stored in another lo
                 
                 save the data into DB by calling function saveUserStepPoints
                 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------                
-                
         --this is to save the user's step points into DB
         function saveUserStepPoints(user_step_point object)
         
                 open the DB conection
                 
                 save the user's step points into DB, based on the best method as defined in Activate Interactive PTE LTD company (e.g. Dapper, EF, ADO.net)
-                
----------------------------------------------------------------------------------------------------------------------------------------------------------------------
                 
         --this is lookup layer to retrieve step_point
         function getStepPoint()
