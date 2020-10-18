@@ -16,4 +16,52 @@ Fields: user_step_point_id (PK),
           - e.g. user_id field
           
           
-3. Assumed that this project is build in multi-tier architecture, and 
+3. Assumed that this project is build in multi-tier architecture, and the function computePoints(String UserId, Date StepDate, int Steps) is created in Business Components layer:
+Assumption: the business function to get step_point will be stored in another lookup DB
+        
+        --this is processing layer to calculate user step points
+        function computerPoints(String UserId, Date StepDate, int Steps)
+                
+                retrieve the step_point object by calling getStepPoint function
+                
+                get user data from DB on today
+                
+                compare the user's steps with step_point object, to define the mileStone, TragetSteps, and points
+                
+                grant user the points as defined in step_point object
+                
+                save the data into DB by calling function saveUserStepPoints
+                
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------                
+                
+        --this is to save the user's step points into DB
+        function saveUserStepPoints(user_step_point object)
+        
+                open the DB conection
+                
+                save the user's step points into DB, based on the best method as defined in Activate Interactive PTE LTD company (e.g. Dapper, EF, ADO.net)
+                
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                
+        --this is lookup layer to retrieve step_point
+        function getStepPoint()
+        
+                if exists in cache
+                        return the step_point details
+                        
+                else
+                        get data from DB, cache the  stepPointsdata and return the data 
+                        (only the effective step_point, not return any obsolete records)
+                        
+                        
+                        
+ 4. The step_point data will be cache in backend server, as shown in the fuction getStepPoint in item 3.
+ 
+ 6. Unit test should be provided to test the functions as defined in item 3.
+        Create MSUnitTest project to test the processing function, by providing multiple test cases
+        E.g.    1. Test case for steps lesser than 5000,
+                2. Test Case for steps between 5000 and 10000
+                3. Test case for steps more than 10000
+                4. ETC......
+                
+        Each development / bugfixes should ensure the all test cases passed, to provide more confident in feature releases and lesser production issue (more confident)
